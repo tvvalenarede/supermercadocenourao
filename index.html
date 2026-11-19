@@ -46,7 +46,7 @@
   button{font-family:inherit;cursor:pointer;border:none;background:none}
   input{font-family:inherit}
 
-  /* ===== BANNER DA LOJA (frente.png) ===== */
+  /* ===== BANNER DA LOJA (GIF animado "cenourao-compre-online.gif") ===== */
   .store-banner{
     background: linear-gradient(135deg, var(--orange-900) 0%, var(--orange-700) 55%, var(--orange-600) 100%);
     position: relative;
@@ -67,19 +67,20 @@
     pointer-events:none;
   }
   .store-banner img{
-    max-width: 100%;
-    max-height: 300px;
+    max-width: min(100%, 1240px);
+    max-height: 420px;
     width: auto;
     height: auto;
     object-fit: contain;
-    border-radius: 12px;
+    border-radius: 14px;
     box-shadow: 0 8px 28px rgba(0,0,0,.35);
     transition: transform .35s cubic-bezier(.34,1.56,.64,1), box-shadow .35s;
     position: relative;
     z-index: 1;
+    background: #fff;
   }
   .store-banner:hover img{
-    transform: scale(1.025);
+    transform: scale(1.015);
     box-shadow: 0 12px 36px rgba(0,0,0,.45);
   }
   .store-banner-tag{
@@ -98,9 +99,9 @@
     box-shadow: 0 4px 14px rgba(250,204,21,.45);
   }
   @media (max-width:768px){
-    .store-banner{ padding: 12px 10px; }
-    .store-banner img{ max-height: 190px; }
-    .store-banner-tag{ font-size:.65rem; padding: 4px 10px; top:8px; left:10px; }
+    .store-banner{ padding: 10px; }
+    .store-banner img{ max-height: 220px; }
+    .store-banner-tag{ font-size:.65rem; padding: 4px 10px; top:8px; left:8px; }
   }
 
   /* TOP BAR */
@@ -281,7 +282,7 @@
   @keyframes slideUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 
   /* ===== BOTÕES FLUTUANTES (WhatsApp / Instagram / Facebook) =====
-     Agora na HORIZONTAL, fixados na parte inferior da página */
+     HORIZONTAL, fixados na parte inferior da página */
   .social-float{
     position:fixed;
     left:50%;
@@ -316,7 +317,6 @@
   .sf-ig{background:linear-gradient(45deg,#f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);box-shadow:0 6px 20px rgba(220,39,67,.45)}
   .sf-fb{background:#1877f2;box-shadow:0 6px 20px rgba(24,119,242,.45)}
   .sf-btn:hover{transform:scale(1.12) translateY(-2px)}
-  /* tooltip agora aparece ACIMA do botão */
   .sf-btn::after{
     content:attr(data-label);
     position:absolute;
@@ -377,14 +377,15 @@
 <body>
 
 <!-- =========================================================
-     BANNER DA LOJA — frente.png (repo tvvalenarede/supermercadocenourao)
+     BANNER DA LOJA — GIF animado "cenourao-compre-online.gif"
+     (repo tvvalenarede/supermercadocenourao)
      ========================================================= -->
-<div class="store-banner" onclick="scrollToProducts()" role="button" tabindex="0" aria-label="Foto da loja - ir para ofertas">
-  <span class="store-banner-tag">🏪 Nossa loja</span>
+<div class="store-banner" onclick="scrollToProducts()" role="button" tabindex="0" aria-label="Compre online no Supermercado Cenourão - ir para ofertas">
+  <span class="store-banner-tag">🛒 Compre online</span>
   <img
-    src="frente.png"
-    alt="Supermercado Cenourão - Terra Nova, Taubaté"
-    onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/tvvalenarede/supermercadocenourao/main/frente.png'">
+    src="cenourao-compre-online.gif"
+    alt="Supermercado Cenourão - Compre online com entrega rápida em Taubaté"
+    onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/tvvalenarede/supermercadocenourao/main/cenourao-compre-online.gif'">
 </div>
 
 <!-- TOP BAR -->
@@ -638,7 +639,6 @@
 
 <!-- =========================================================
      BOTÕES FLUTUANTES — WhatsApp / Instagram / Facebook
-     (HORIZONTAL, fixos na parte inferior da página)
      ========================================================= -->
 <div class="social-float">
   <a href="https://wa.me/5512997690407" target="_blank" rel="noopener" class="sf-btn sf-wa" data-label="WhatsApp" aria-label="Falar no WhatsApp">
@@ -655,7 +655,6 @@
 <script>
 /* =========================================================
    CONFIGURAÇÃO CENTRAL
-   Número do WhatsApp que RECEBE os pedidos (DDI + DDD)
    ========================================================= */
 const WHATSAPP_NUMBER = '5512997690407'; // (12) 99769-0407 ✅
 
@@ -674,7 +673,6 @@ const CATEGORIES = [
 ];
 
 const PRODUCTS = [
-  /* HORTIFRUTI */
   { id:1,  cat:'hortifruti', name:'Cenoura Fresca (kg)',        emoji:'🥕', price:3.99,  old:4.99,  unit:'Por kg',        tag:'promo' },
   { id:2,  cat:'hortifruti', name:'Tomate Italiano (kg)',       emoji:'🍅', price:6.99,  old:null,  unit:'Por kg',        tag:null },
   { id:3,  cat:'hortifruti', name:'Banana Prata (kg)',          emoji:'🍌', price:5.49,  old:null,  unit:'Por kg',        tag:null },
@@ -684,14 +682,12 @@ const PRODUCTS = [
   { id:7,  cat:'hortifruti', name:'Laranja Pera (kg)',          emoji:'🍊', price:4.29,  old:null,  unit:'Por kg',        tag:null },
   { id:8,  cat:'hortifruti', name:'Ovos Brancos - 30 un',       emoji:'🥚', price:16.90, old:19.90, unit:'Bandeja 30 un', tag:'promo' },
 
-  /* GRÃOS */
   { id:9,  cat:'graos', name:'Arroz Tipo 1 - 5kg',              emoji:'🍚', price:24.90, old:29.90, unit:'Pacote 5kg',    tag:'promo' },
   { id:10, cat:'graos', name:'Feijão Carioca - 1kg',            emoji:'🫘', price:8.49,  old:9.90,  unit:'Pacote 1kg',    tag:'promo' },
   { id:11, cat:'graos', name:'Feijão Preto - 1kg',              emoji:'🫘', price:9.29,  old:null,  unit:'Pacote 1kg',    tag:null },
   { id:12, cat:'graos', name:'Milho Verde em Lata 170g',        emoji:'🌽', price:4.99,  old:null,  unit:'Lata 170g',     tag:null },
   { id:13, cat:'graos', name:'Arroz Integral - 1kg',            emoji:'🌾', price:9.90,  old:null,  unit:'Pacote 1kg',    tag:'new' },
 
-  /* BEBIDAS */
   { id:14, cat:'bebidas', name:'Refrigerante Coca-Cola 2L',     emoji:'🥤', price:9.99,  old:12.90, unit:'Garrafa 2L',    tag:'promo' },
   { id:15, cat:'bebidas', name:'Guaraná Antarctica 2L',         emoji:'🥤', price:7.49,  old:null,  unit:'Garrafa 2L',    tag:null },
   { id:16, cat:'bebidas', name:'Suco de Laranja 1L',            emoji:'🧃', price:8.90,  old:null,  unit:'Caixa 1L',      tag:null },
@@ -699,7 +695,6 @@ const PRODUCTS = [
   { id:18, cat:'bebidas', name:'Cerveja Lata 350ml (pack 12)',  emoji:'🍺', price:39.90, old:49.90, unit:'Pack 12 un',    tag:'promo' },
   { id:19, cat:'bebidas', name:'Energético 473ml',              emoji:'⚡', price:9.90,  old:null,  unit:'Lata 473ml',    tag:'new' },
 
-  /* MERCEARIA */
   { id:20, cat:'mercearia', name:'Óleo de Soja - 900ml',        emoji:'🛢️', price:7.29,  old:8.90,  unit:'Garrafa 900ml', tag:'promo' },
   { id:21, cat:'mercearia', name:'Açúcar Refinado - 1kg',       emoji:'🍬', price:5.49,  old:null,  unit:'Pacote 1kg',    tag:null },
   { id:22, cat:'mercearia', name:'Café Torrado e Moído 500g',   emoji:'☕', price:18.90, old:22.90, unit:'Pacote 500g',   tag:'promo' },
@@ -707,26 +702,22 @@ const PRODUCTS = [
   { id:24, cat:'mercearia', name:'Macarrão Espaguete 500g',     emoji:'🍝', price:4.29,  old:null,  unit:'Pacote 500g',   tag:null },
   { id:25, cat:'mercearia', name:'Molho de Tomate 340g',        emoji:'🍅', price:3.99,  old:null,  unit:'Sachê 340g',    tag:null },
 
-  /* LIMPEZA */
   { id:26, cat:'limpeza', name:'Detergente Líquido 500ml',      emoji:'🧴', price:3.49,  old:null,  unit:'Frasco 500ml',  tag:null },
   { id:27, cat:'limpeza', name:'Sabão em Pó 1,6kg',             emoji:'🧼', price:19.90, old:24.90, unit:'Pacote 1,6kg',  tag:'promo' },
   { id:28, cat:'limpeza', name:'Água Sanitária 2L',             emoji:'🧴', price:6.90,  old:null,  unit:'Garrafa 2L',    tag:null },
   { id:29, cat:'limpeza', name:'Papel Higiênico 12 rolos',      emoji:'🧻', price:24.90, old:29.90, unit:'Pack 12 rolos', tag:'promo' },
 
-  /* FRIOS */
   { id:30, cat:'frios', name:'Leite Integral 1L',               emoji:'🥛', price:5.29,  old:null,  unit:'Caixa 1L',      tag:null },
   { id:31, cat:'frios', name:'Queijo Mussarela 500g',           emoji:'🧀', price:22.90, old:27.90, unit:'Peça 500g',     tag:'promo' },
   { id:32, cat:'frios', name:'Presunto Fatiado 200g',           emoji:'🥓', price:9.90,  old:null,  unit:'Bandeja 200g',  tag:null },
   { id:33, cat:'frios', name:'Iogurte Natural 170g',            emoji:'🥛', price:3.49,  old:null,  unit:'Pote 170g',     tag:null },
   { id:34, cat:'frios', name:'Manteiga 200g',                   emoji:'🧈', price:12.90, old:null,  unit:'Pote 200g',     tag:null },
 
-  /* PADARIA */
   { id:35, cat:'padaria', name:'Pão de Forma Tradicional',      emoji:'🍞', price:7.90,  old:null,  unit:'Pacote 500g',   tag:null },
   { id:36, cat:'padaria', name:'Pão Francês (kg)',              emoji:'🥖', price:14.90, old:null,  unit:'Por kg',        tag:null },
   { id:37, cat:'padaria', name:'Bolo de Cenoura c/ Cobertura',  emoji:'🍰', price:19.90, old:null,  unit:'Unidade',       tag:'new' },
   { id:38, cat:'padaria', name:'Torrada Integral 200g',         emoji:'🍞', price:6.49,  old:null,  unit:'Pacote 200g',   tag:null },
 
-  /* AÇOUGUE */
   { id:39, cat:'acougue', name:'Linguiça Toscana (kg)',         emoji:'🌭', price:19.90, old:24.90, unit:'Por kg',        tag:'promo' },
   { id:40, cat:'acougue', name:'Frango Inteiro (kg)',           emoji:'🍗', price:12.90, old:null,  unit:'Por kg',        tag:null },
   { id:41, cat:'acougue', name:'Carne Moída (kg)',              emoji:'🥩', price:29.90, old:null,  unit:'Por kg',        tag:null },
